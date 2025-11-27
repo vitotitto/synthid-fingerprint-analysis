@@ -86,7 +86,7 @@ To compensate for the limited number of images while keeping the model shallow a
 
 
 
-![dataset_examples](assets\dataset_examples.png)
+![dataset_examples](assets/dataset_examples.png)
 
 
 
@@ -102,7 +102,7 @@ I engineered **13 interpretable features** targeting frequency-domain patterns i
 
 
 
-![image_window_extraction_sceme](assets\image_window_extraction_sceme.png)
+![image_window_extraction_sceme](assets/image_window_extraction_sceme.png)
 
 
 *Figure 3: Image windowing scheme. Each image is split into 16 windows, and the classifier is trained on these window-level feature vectors as independent samples. At inference, we predict a probability for each window and then average the window probabilities to obtain a single image-level decision (post-prediction mean pooling).*
@@ -122,7 +122,7 @@ These look for checkerboard-like patterns by analysing energy at specific period
 
 
 
-![window_0_0_256x256_lattice](assets\window_0_0_256x256_lattice.png)
+![window_0_0_256x256_lattice](assets/window_0_0_256x256_lattice.png)
 
 *Figure 4: Lattice features. Each image window is analysed in the frequency domain; energy at short spatial periods (2–5 px) along horizontal, vertical and diagonal directions is summarised into six features, capturing fine-scale checkerboard-like structure.*
 
@@ -136,7 +136,7 @@ These measure directional bias in medium-frequency **wavelet coefficients** obta
 - `ang_spectral_flatness`: Geometric/arithmetic mean ratio  
 - `ang_dip_contrast`: Contrast at angular dips
 
-![window_0_0_256x256_angular](assets\window_0_0_256x256_angular.png)
+![window_0_0_256x256_angular](assets/window_0_0_256x256_angular.png)
 
 *Figure 5:  A 2D Daubechies-4 DWT (3 levels) is applied to the LAB a channel, and medium-frequency detail coefficients are pooled into an angular energy histogram; three summary statistics capture how strongly energy is concentrated along specific orientations.*
 
@@ -146,7 +146,7 @@ This feature  measures the strength of stripe-like structure at ±45° by taking
 
 - `ds_autocorr_diagonal`: Maximum autocorrelation along 45° directions 
 
-![window_0_0_256x256_diagonal](assets\window_0_0_256x256_diagonal.png)
+![window_0_0_256x256_diagonal](assets/window_0_0_256x256_diagonal.png)
 
 
 *Figure 6: Diagonal stripe detection via oriented autocorrelation. Sampling along 4 diagonal directions reveals periodic structure at 45-degree angles.*
@@ -167,7 +167,7 @@ This feature  measures the strength of stripe-like structure at ±45° by taking
 
 #### Experiment 1: Clean Model
 
-![clean_pipeline](assets\clean_pipeline.png)
+![clean_pipeline](assets/clean_pipeline.png)
 *Figure 7. Clean watermark detection pipeline.
  The model is trained on 120 pristine(raw) images (with stratified, group-wise cross-validation that respects image identity, all windows from an image stay in the same fold) and tested on 40 clean hold-out images; each image is split into windows, classified at window level, and window probabilities are averaged to obtain the final image-level watermark score.*
 
@@ -187,13 +187,13 @@ This feature  measures the strength of stripe-like structure at ±45° by taking
 
 
 
-![image_degeneration_pipeline](assets\image_degeneration_pipeline.png)
+![image_degeneration_pipeline](assets/image_degeneration_pipeline.png)
 
 *Figure 8: Image degradation pipeline simulating social media compression and transformations.*
 
 
 
-![degenerated_pipeline](assets\degenerated_pipeline.png)
+![degenerated_pipeline](assets/degenerated_pipeline.png)
 
 
 *Figure 9: Degraded watermark detection pipeline. Model trained on 720 augmented images, verified on 240 degraded holdout images.*
@@ -244,7 +244,7 @@ This feature  measures the strength of stripe-like structure at ±45° by taking
 
 #### 1. Clean Training → Clean Holdout (Baseline)
 
-![performance_comparison_clean_on_clean](assets\performance_comparison_clean_on_clean.png)
+![performance_comparison_clean_on_clean](assets/performance_comparison_clean_on_clean.png)
 
 *Figure 10: Clean model performance on pristine holdout.*
 
@@ -258,7 +258,7 @@ This feature  measures the strength of stripe-like structure at ±45° by taking
 | **Actual Real**        |             20 |                     0 |
 | **Actual Watermarked** |              3 |                    17 |
 
-![prediction_distribution](assets\prediction_distribution_clean_on_clean.png)
+![prediction_distribution](assets/prediction_distribution_clean_on_clean.png)
 *Figure 11: Good separation of classes
 
 Relatively good detection on raw images. 3 generated images misclassified.
@@ -271,7 +271,7 @@ Relatively good detection on raw images. 3 generated images misclassified.
 
 #### 2. Clean Training → Degraded Holdout
 
-![prediction_distribution](assets\prediction_distribution_clean_on_degraded.png)
+![prediction_distribution](assets/prediction_distribution_clean_on_degraded.png)
 *Figure 12: Clean model fails on degraded data. AUC drops 30% to 0.683.*
 
 **Holdout Performance**: 0.683 AUC (↓29.4%), 70.0% accuracy
@@ -294,7 +294,7 @@ JPEG compression and mild geometric transforms (rescaling, rotation, cropping) b
 
 #### 3. Degraded Training → Degraded holdout(Robust Performance)
 
-![performance_comparison_degraded_on_degraded](assets\performance_comparison_degraded_on_degraded.png)
+![performance_comparison_degraded_on_degraded](assets/performance_comparison_degraded_on_degraded.png)
 *Figure 13: Degraded model maintains high performance on attacked images. 92.6% AUC with balanced errors.*
 
 **Cross-Validation**: 0.779 ± 0.034 AUC  
@@ -317,7 +317,7 @@ JPEG compression and mild geometric transforms (rescaling, rotation, cropping) b
 
 #### 4. Degraded Training → Clean holdout
 
-![performance_comparison_degraded_on_clean](assets\performance_comparison_degraded_on_clean.png)
+![performance_comparison_degraded_on_clean](assets/performance_comparison_degraded_on_clean.png)
 *Figure 14: Degraded model achieves perfect 100% accuracy on raw images, outperforming the clean-trained baseline.*
 
 **Holdout Performance**: 1.000 AUC, 100% accuracy, 1.000 F1
@@ -329,7 +329,7 @@ JPEG compression and mild geometric transforms (rescaling, rotation, cropping) b
 | **Actual Real**        |             20 |                     0 |
 | **Actual Watermarked** |              0 |                    20 |
 
-![separation_degraded_on_clean](assets\separation_degraded_on_clean.png)
+![separation_degraded_on_clean](assets/separation_degraded_on_clean.png)
 
 *Figure 15: Cleaner separation than clean-trained model. All images correctly classified with high confidence.*
 
@@ -343,7 +343,7 @@ The two models rely on different feature sets:
 
 #### Clean-Trained Model
 
-![feature_importance_clean](assets\feature_importance_clean.png)
+![feature_importance_clean](assets/feature_importance_clean.png)
 *Figure 16: Clean model heavily weights angular features (coefficients >5.0)*
 
 **Top 5 Features:**
@@ -362,7 +362,7 @@ The two models rely on different feature sets:
 
 #### Degraded-Trained Model
 
-![feature_importance_degraded](assets\feature_importance_degraded.png)
+![feature_importance_degraded](assets/feature_importance_degraded.png)
 *Figure 17: Degraded model uses balanced features (coefficients <2.5) with emphasis on robust frequency-domain patterns.*
 
 **Top 5 Features:**
@@ -546,6 +546,7 @@ MIT License - See LICENSE file for details
 **Contact**: Victoria Titova
 
 **Last Updated**: November 2025
+
 
 
 
