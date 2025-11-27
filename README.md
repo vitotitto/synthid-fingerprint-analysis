@@ -53,7 +53,7 @@ So if you had to hide information (such as watermark), the same biology suggests
 
 
 
-![SWT_example_visualisation_of_texture](assets\SWT_example_visualisation_of_texture.jpg)
+![SWT_example_visualisation_of_texture](assets/SWT_example_visualisation_of_texture.jpg)
 
 *Figure 1: Stationary Wavelet Transform (SWT) applied to (a) channel of LAB colour space as an illustrating revealing hidden texture. Repetedly low-pass filtering and discarding high-frequency luminance detail, the watermark’s diagonal checkerboard pattern in the Green-Red channel becomes visible, even though it is imperceptible in the original image.*
 
@@ -546,6 +546,7 @@ MIT License - See LICENSE file for details
 **Contact**: Victoria Titova
 
 **Last Updated**: November 2025
+
 
 
 
