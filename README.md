@@ -504,6 +504,8 @@ That being said, this setup cannot prove that SynthID is *exactly* a holographic
 - The feature set is hand-crafted and narrow (frequency/texture in LAB a*); other watermark cues may exist outside this space.
 
 Images generated with Stable Diffusion *without* SynthID and without the invisible SD watermark did not exhibit the same structural fingerprint as the Nano Banana SynthID images, under the same feature extractor and classifier. It makes it less likely that the detector is simply learning a trivial artefact of the diffusion model's underlying upsampling.
+![probabilities_alternative_provider](assets/probabilities_alternative_provider.png)
+*Figure 18. Image-level watermark probabilities for alternative synthetic images by provider.The dashed horizontal line marks the classifier’s decision threshold (0.5). Most META AI and SD images lie below or close to this threshold and occupy a much lower probability range than SynthID-watermarked images, however this needs to be tested on more data.*
 
 
 
@@ -546,6 +548,7 @@ MIT License - See LICENSE file for details
 **Contact**: Victoria Titova
 
 **Last Updated**: November 2025
+
 
 
 
